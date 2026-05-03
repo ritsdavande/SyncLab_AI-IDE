@@ -389,6 +389,14 @@ app.post("/api/v2/piston/execute", async (req: Request, res: Response) => {
 		}
 
 		if (compilerName) {
+			// Wandbox always saves Java files as "prog.java", so we must strip
+			// the "public" keyword from class declarations to avoid the
+			// "class X should be declared in a file named X.java" error.
+			let sourceCode = files[0].content;
+			if (language.toLowerCase() === "java") {
+				sourceCode = sourceCode.replace(/public\s+class\s+/g, "class ");
+			}
+
 			const response = await fetch("https://wandbox.org/api/compile.json", {
 				method: "POST",
 				headers: {
@@ -396,7 +404,7 @@ app.post("/api/v2/piston/execute", async (req: Request, res: Response) => {
 				},
 				body: JSON.stringify({
 					compiler: compilerName,
-					code: files[0].content,
+					code: sourceCode,
 					stdin: stdin || ""
 				})
 			})
