@@ -85,9 +85,9 @@ const SocketProvider = ({ children }: { children: ReactNode }) => {
     const handleUserLeft = useCallback(
         ({ user }: { user: User }) => {
             toast.success(`${user.username} left the room`)
-            setUsers(users.filter((u: User) => u.username !== user.username))
+            setUsers((prevUsers) => prevUsers.filter((u: User) => u.username !== user.username))
         },
-        [setUsers, users],
+        [setUsers],
     )
 
     const handleRequestDrawing = useCallback(
