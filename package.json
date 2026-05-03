@@ -1,0 +1,12 @@
+{
+  "name": "synclab-project",
+  "version": "1.0.0",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.0"
+  },
+  "scripts": {
+    "install:all": "npm install && cd client && npm install && cd ../server && npm install",
+    "build": "cd client && npm run build && cd ../server && npm run build",
+    "start": "cd server && npm start"
+  }
+}

@@ -1,0 +1,22 @@
+start.bat
+TODO.md
+
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+client/.env
+server/.env
+
+# Build output
+client/dist/
+server/dist/
+
+# IDE
+.vscode/
+.sfdx/
+
+# OS
+.DS_Store
+Thumbs.db
